@@ -1,8 +1,9 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class MouvementPlayer : MonoBehaviour
+public class MovementPlayer : MonoBehaviour
 {
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private float _speed = 1;
@@ -11,7 +12,9 @@ public class MouvementPlayer : MonoBehaviour
     [SerializeField] private List<Vector3> _pathList = new List<Vector3>();
     public List<Vector3> PathList { get => _pathList; set => _pathList = value; }
     [SerializeField] UnityEvent  _onStartMove = new UnityEvent();
+    public event Action OnStartMove;
     [SerializeField] UnityEvent  _onEndMove = new UnityEvent();
+    public event Action OnEndMove;
     [SerializeField] UnityEvent  _onTP = new UnityEvent();
     private bool _isMoving = false;
     public bool IsMoving { get => _isMoving; set => _isMoving = value; }
@@ -55,7 +58,8 @@ public class MouvementPlayer : MonoBehaviour
         else
         {
             _isMoving = false;
-            _onEndMove.Invoke();
+            _onEndMove?.Invoke();
+            OnEndMove?.Invoke();
             return;
         }
         if (_doCountMove)
@@ -67,7 +71,6 @@ public class MouvementPlayer : MonoBehaviour
     public void AddPos(Vector3 pos)
     {
         _pathList.Add(pos);
-        IsMoving = true;
     }
     public void AddPos(List<Vector3> pos)
     {
@@ -75,19 +78,19 @@ public class MouvementPlayer : MonoBehaviour
         {
             _pathList.Add(p);
         }
-        IsMoving = true;
     }
 
     public void StartMoving()
     {
         _isMoving = true;
+        _onStartMove?.Invoke();
+        OnStartMove?.Invoke();
         NextPos();
-        _onStartMove.Invoke();
     }
 
     public void TPAt(Vector3 pos)
     {
         transform.position = pos;
-        _onTP.Invoke();
+        _onTP?.Invoke();
     }
 }
