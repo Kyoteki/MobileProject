@@ -6,9 +6,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     
     [Header("Player Settings")]
-    [SerializeField] private GameObject _playerScript;
+    [SerializeField] private GameObject _player;
     
-    public GameObject PlayerScript { get { return _playerScript; } }
+    public MovementPlayer MovementPlayer { get { return _player.GetComponent<MovementPlayer>(); } }
     
     private void Awake()
     {

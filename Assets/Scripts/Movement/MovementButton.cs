@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class MovementButton : MonoBehaviour
 {
-    [SerializeField] private MovementPlayer _mouvementPlayer;
+    private MovementPlayer _mouvementPlayer;
 
-    void Awake()
+    private void Start()
     {
+        _mouvementPlayer = GameManager.Instance.MovementPlayer;
+        
         _mouvementPlayer.OnStartMove += Hide;
         _mouvementPlayer.OnEndMove += ShowCorrectButton;
     }
