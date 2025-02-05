@@ -1,26 +1,27 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class MouvementPlayer : MonoBehaviour
 {
-    [SerializeField] private float speed = 1;
-    private static int nbCaseMouv = 0;
-    public static int NbCaseMouv { get => nbCaseMouv; private set => nbCaseMouv = value; }
-    [SerializeField] private List<Vector3> pathList = new List<Vector3>();
-    public List<Vector3> PathList { get => pathList; set => pathList = value; }
-    private bool isMoving = false;
-    private Vector3 nextPos;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+    [SerializeField] private float _speed = 1;
+    private static int _nbCaseMouv = 0;
+    public static int NbCaseMouv { get => _nbCaseMouv; private set => _nbCaseMouv = value; }
+    [SerializeField] private List<Vector3> _pathList = new List<Vector3>();
+    public List<Vector3> PathList { get => _pathList; set => _pathList = value; }
+    [SerializeField] UnityEvent  _onStartMove = new UnityEvent();
+    [SerializeField] UnityEvent  _onEndMove = new UnityEvent();
+    [SerializeField] UnityEvent  _onTP = new UnityEvent();
+    private bool _isMoving = false;
+    public bool IsMoving { get => _isMoving; set => _isMoving = value; }
+    private bool _doCountMove = true;
+    public bool DoCountMove { get => _doCountMove; set => _doCountMove = value; }
+    private Vector3 _nextPos;
 
     void Update()
     {
-        // temporary to test movement
-        if (Input.GetKeyDown(KeyCode.Space) && pathList.Count > 0)
-        {
-            isMoving = true;
-        }
-
-        if (isMoving)
+        if (_isMoving)
         {
             Mouv();
         }
@@ -29,8 +30,8 @@ public class MouvementPlayer : MonoBehaviour
     void Mouv()
     {
         float deltaTime = Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, nextPos, speed * deltaTime);
-        if (transform.position == nextPos)
+        transform.position = Vector3.MoveTowards(transform.position, _nextPos, _speed * deltaTime);
+        if (transform.position == _nextPos)
         {
             NextPos(); 
         }
@@ -38,23 +39,53 @@ public class MouvementPlayer : MonoBehaviour
 
     void NextPos()
     {
-        if (pathList.Count > 0)
+        if (_pathList.Count > 0)
         {
-            nextPos = pathList[0];
-            pathList.RemoveAt(0);
-            if (nextPos.x > transform.position.x)
+            _nextPos = _pathList[0];
+            _pathList.RemoveAt(0);
+            if (_nextPos.x > transform.position.x)
             {
-                spriteRenderer.flipX = false;
+                _spriteRenderer.flipX = false;
             }
-            else if (nextPos.x < transform.position.x)
+            else if (_nextPos.x < transform.position.x)
             {
-                spriteRenderer.flipX = true;
+                _spriteRenderer.flipX = true;
             }
         }
         else
         {
-            isMoving = false;
+            _isMoving = false;
+            _onEndMove.Invoke();
+            return;
         }
-        nbCaseMouv++;
+        if (_doCountMove)
+        {
+            _nbCaseMouv++;
+        }
+    }
+
+    public void AddPos(Vector3 pos)
+    {
+        _pathList.Add(pos);
+    }
+    public void AddPos(List<Vector3> pos)
+    {
+        foreach (Vector3 p in pos)
+        {
+            _pathList.Add(p);
+        }
+    }
+
+    public void StartMoving()
+    {
+        _isMoving = true;
+        NextPos();
+        _onStartMove.Invoke();
+    }
+
+    public void TPAt(Vector3 pos)
+    {
+        transform.position = pos;
+        _onTP.Invoke();
     }
 }

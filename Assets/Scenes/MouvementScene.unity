@@ -356,13 +356,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a8c6c1baa2e4b4dbf1fe7f1133fcd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  pathList:
+  _spriteRenderer: {fileID: 1027806263}
+  _speed: 2
+  _pathList:
   - {x: 1, y: 0, z: 0}
   - {x: 1, y: 1, z: 0}
-  - {x: -1, y: 1, z: 0}
-  - {x: -1, y: 2, z: 0}
-  spriteRenderer: {fileID: 1027806263}
+  - {x: 2, y: 1, z: 0}
+  - {x: 2, y: 0, z: 0}
 --- !u!1 &1763321628
 GameObject:
   m_ObjectHideFlags: 0
