@@ -67,6 +67,7 @@ public class MouvementPlayer : MonoBehaviour
     public void AddPos(Vector3 pos)
     {
         _pathList.Add(pos);
+        IsMoving = true;
     }
     public void AddPos(List<Vector3> pos)
     {
@@ -74,6 +75,7 @@ public class MouvementPlayer : MonoBehaviour
         {
             _pathList.Add(p);
         }
+        IsMoving = true;
     }
 
     public void StartMoving()
