@@ -28,7 +28,7 @@ public class CollisionManager : MonoBehaviour
     {
         return Physics2D.Raycast(position, Vector3.forward, 0.1f, _layerObstacle);
     }
-    public bool InteractableAt(Vector3 position)
+    public bool CanInteractAt(Vector3 position)
     {
         return Physics2D.Raycast(position, Vector3.forward, 0.1f, _layerInteractable);
     }

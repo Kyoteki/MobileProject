@@ -8,7 +8,7 @@ public class SoulPlayer : MonoBehaviour
     {
         AsSoul = true;
     }
-    public void DropSoul()
+    public void PurifySoul()
     {
         AsSoul = false;
     }
