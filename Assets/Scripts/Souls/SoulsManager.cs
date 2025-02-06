@@ -27,16 +27,15 @@ public class SoulsManager : MonoBehaviour
         {
             CountSoulsAlive++;
             soul.GetComponent<Soul>().OnCorrupt += AddSoulsCorrupt;
-            soul.GetComponent<Soul>().OnPurify += AddSoulsPurify;
         }
     }
 
     void AddSoulsCorrupt()
     {
-        _countForHurt++;
+        CountSoulsCorrupt++;
     }
-    void AddSoulsPurify()
+    public void AddSoulsPurify()
     {
-        _countForHurt++;
+        CountSoulsPurify++;
     }
 }

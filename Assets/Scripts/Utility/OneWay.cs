@@ -16,7 +16,7 @@ public class OneWay : MonoBehaviour
         
         float dotProduct = Vector3.Dot(transform.right, playerToOnWay);
 
-        if (dotProduct < 0)
+        if (dotProduct <= 0.1f)
         {
             _colliderOnWay.gameObject.SetActive(false);
         }
