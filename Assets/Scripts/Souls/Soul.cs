@@ -18,8 +18,6 @@ public class Soul : MonoBehaviour
     private MovementPlayer _movementPlayer;
     public event Action OnCorrupt;
     [SerializeField] UnityEvent _onCorrupt;
-    public event Action OnPurify;
-    [SerializeField] UnityEvent _onPurify;
 
     void Start()
     {
@@ -43,13 +41,6 @@ public class Soul : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-    }
-
-    public void Purify()
-    {
-        OnPurify?.Invoke();
-        _onPurify?.Invoke();
-        Destroy(gameObject);
     }
 
     private void OnDestroy()
