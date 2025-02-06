@@ -7,8 +7,9 @@ public class GameManager : MonoBehaviour
     
     [Header("Player Settings")]
     [SerializeField] private GameObject _player;
-    
-    public MovementPlayer MovementPlayer { get { return _player.GetComponent<MovementPlayer>(); } }
+    public MovementPlayer MovementPlayer { get { return _player != null ? _player.GetComponent<MovementPlayer>() : null; } }
+    public Vector3 PlayerPosition { get { return _player != null ? _player.transform.position : Vector3.zero; } }
+    public SoulPlayer SoulPlayer { get { return _player != null ? _player.gameObject.GetComponent<SoulPlayer>() : null; } }
     
     private void Awake()
     {
