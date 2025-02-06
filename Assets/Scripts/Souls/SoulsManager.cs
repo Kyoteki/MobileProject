@@ -1,13 +1,16 @@
+using System;
 using UnityEngine;
 
 public class SoulsManager : MonoBehaviour
 {
+    [Header("SoulsSettings")]
     [SerializeField] Transform _soulHolder;
     [SerializeField] int _countForHurt = 3;
     public int CountForHurt { get { return _countForHurt; } }
 
-    int _count = 0;
-    int CountSouls {  get { return _count; } }
+    public int CountSoulsAlive { get; private set; }
+    public int CountSoulsCorrupt { get; private set; }
+    public int CountSoulsPurify { get; private set; }
     public static SoulsManager Instance { get; private set; }
 
     private void Awake()
@@ -17,15 +20,23 @@ public class SoulsManager : MonoBehaviour
 
     void Start()
     {
-        _count = _soulHolder.childCount;
+        CountSoulsAlive = 0;
+        CountSoulsCorrupt = 0;
+        CountSoulsPurify = 0;
+        foreach (Transform soul in _soulHolder.transform)
+        {
+            CountSoulsAlive++;
+            soul.GetComponent<Soul>().OnCorrupt += AddSoulsCorrupt;
+            soul.GetComponent<Soul>().OnPurify += AddSoulsPurify;
+        }
     }
 
-    void Update()
+    void AddSoulsCorrupt()
     {
-        if(_soulHolder.childCount == 0)
-        {
-            //FIN
-            Debug.Log("FIN");
-        }
+        _countForHurt++;
+    }
+    void AddSoulsPurify()
+    {
+        _countForHurt++;
     }
 }
