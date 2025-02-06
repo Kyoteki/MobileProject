@@ -7,6 +7,8 @@ public class ActivateButton : MonoBehaviour
 
     void Awake()
     {
+        Hide();
+        
         _mouvementPlayer = GameManager.Instance.MovementPlayer;
         
         _mouvementPlayer.OnStartMove += Hide;

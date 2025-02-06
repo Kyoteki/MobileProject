@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Souls : MonoBehaviour, IInteractable
+public class SoulsInteraction : MonoBehaviour, IInteractable
 {
     [Header("Soul Settings")]
     [SerializeField] private GameObject _soulParent;
