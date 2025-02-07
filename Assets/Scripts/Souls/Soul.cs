@@ -24,6 +24,8 @@ public class Soul : MonoBehaviour
         _movementPlayer = GameManager.Instance.MovementPlayer;
 
         _movementPlayer.OnEndMove += HurtSelf;
+        //A SUPRIMMERR!!!!!!!!!!!!!!!!!!!!!
+        _spriteRenderer.color = Color.green;
     }
 
     void HurtSelf()
@@ -39,6 +41,25 @@ public class Soul : MonoBehaviour
                 OnCorrupt?.Invoke();
                 _onCorrupt?.Invoke();
                 Destroy(gameObject);
+            }
+            //A SUPRIMMERR!!!!!!!!!!!!!!!!!!!!!
+            switch (_state)
+            {
+                case State.stateOne:
+                    _spriteRenderer.color = Color.green;
+                    break;
+                case State.stateTwo:
+                    _spriteRenderer.color = Color.yellow;
+                    break;
+                case State.stateThree:
+                    _spriteRenderer.color = Color.red;
+                    break;
+                case State.stateFour:
+                    _spriteRenderer.color = Color.gray;
+                    break;
+                case State.stateFive:
+                    _spriteRenderer.color = Color.black;
+                    break;
             }
         }
     }

@@ -11,7 +11,12 @@ public class Interact : MonoBehaviour
         _mouvementPlayer = GameManager.Instance.MovementPlayer;
         _collisionManager = CollisionManager.Instance;
         
-        _mouvementPlayer.OnEndMove += TryInteract;
+        _mouvementPlayer.OnStop += TryInteract;
+    }
+
+    private void OnDestroy()
+    {
+        _mouvementPlayer.OnStop -= TryInteract;
     }
 
     private void TryInteract()
