@@ -1,0 +1,29 @@
+using System;
+using UnityEngine;
+
+public class OneWayInteract : MonoBehaviour, IInteractable
+{
+    private MovementPlayer _movementPlayer;
+    
+    private void Start()
+    {
+        _movementPlayer = GameManager.Instance.MovementPlayer;
+    }
+
+    public void Interact()
+    {
+        // Cancel count of movement
+        _movementPlayer.DoCountMove = false;
+        
+        _movementPlayer.AddPos(transform.position + transform.right);
+        _movementPlayer.StartMoving();
+
+        _movementPlayer.OnEndMove += RestartCountMove;
+    }
+
+    private void RestartCountMove()
+    {
+        _movementPlayer.DoCountMove = true;
+        _movementPlayer.OnEndMove -= RestartCountMove;
+    }
+}

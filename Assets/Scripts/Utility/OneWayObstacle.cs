@@ -1,14 +1,9 @@
 using System;
 using UnityEngine;
 
-public class OneWay : MonoBehaviour
+public class OneWayObstacle : MonoBehaviour
 {
-    private BoxCollider2D _colliderOnWay;
-
-    private void Start()
-    {
-        _colliderOnWay = gameObject.GetComponentInChildren<BoxCollider2D>();
-    }
+    [SerializeField] private BoxCollider2D _colliderOnWay;
 
     private void Update()
     {
@@ -16,7 +11,7 @@ public class OneWay : MonoBehaviour
         
         float dotProduct = Vector3.Dot(transform.right, playerToOnWay);
 
-        if (dotProduct <= 0.1f)
+        if (dotProduct < -0.1f)
         {
             _colliderOnWay.gameObject.SetActive(false);
         }
