@@ -6,9 +6,31 @@ public class UI : MonoBehaviour
 {
     [Header("UI Settings Movement")]
     [SerializeField] private TextMeshProUGUI _textMovement;
+    [SerializeField] private TextMeshProUGUI _textScore;
+    private MovementPlayer _movementPlayer;
+    private SoulsManager _soulsManager;
 
-    private void Update()
+    private void Start()
     {
-        _textMovement.text = $"Déplacement {MovementPlayer.NbCaseMouv.ToString()}";
+        // Get the components
+        _movementPlayer = GameManager.Instance.MovementPlayer;
+        _soulsManager = SoulsManager.Instance;
+        
+        // Add the event
+        _movementPlayer.OnEndMove += ChangeMoveCaseUI;
+        Purify.OnPurify += ChangeScore;
+        
+        ChangeMoveCaseUI();
+    }
+
+    private void ChangeMoveCaseUI()
+    {
+        string nbCaseRemaining = (_soulsManager.CountForHurt - (MovementPlayer.NbCaseMouv % _soulsManager.CountForHurt)).ToString();
+        _textMovement.text = $"Détérioration dans: {nbCaseRemaining}";
+    }
+
+    private void ChangeScore()
+    {
+         _textScore.text = $"Score: {_soulsManager.CountSoulsPurify.ToString()}"; 
     }
 }

@@ -185,9 +185,6 @@ MonoBehaviour:
   _onCorrupt:
     m_PersistentCalls:
       m_Calls: []
-  _onPurify:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &7266990772357238537
 GameObject:
   m_ObjectHideFlags: 0

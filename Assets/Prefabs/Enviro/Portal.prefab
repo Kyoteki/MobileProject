@@ -276,3 +276,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _linkPortal: {fileID: 0}
+  _onTeleport:
+    m_PersistentCalls:
+      m_Calls: []
