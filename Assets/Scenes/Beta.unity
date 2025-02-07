@@ -584,7 +584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727ad95447814804fb8616f7f76e9f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelSelected: {fileID: 5528948840815735545, guid: 7c53d0717b11aad4fa8842af6d2eaca2, type: 3}
+  _levelSelected: {fileID: 5528948840815735545, guid: 6f6c06615d26a9540ae4e0248644e3bc, type: 3}
   _scoreOneStar: 60
   _scoreTwoStar: 80
   _scoreThreeStar: 100
@@ -854,7 +854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6021012010d2346add6c1bdc733d58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _countForHurt: 3
+  _countForHurt: 5
 --- !u!4 &728600461
 Transform:
   m_ObjectHideFlags: 0
