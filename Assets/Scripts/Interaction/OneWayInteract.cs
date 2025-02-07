@@ -26,4 +26,9 @@ public class OneWayInteract : MonoBehaviour, IInteractable
         _movementPlayer.DoCountMove = true;
         _movementPlayer.OnEndMove -= RestartCountMove;
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawRay(transform.position, transform.right);
+    }
 }

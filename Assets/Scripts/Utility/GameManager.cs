@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
+            //A RETIRER
+            Setup();
         }
         else
         {
@@ -56,7 +58,6 @@ public class GameManager : MonoBehaviour
     void Setup()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
-        _level = GameObject.FindGameObjectWithTag("Level");
         StartTimer();
     }
 
@@ -74,7 +75,7 @@ public class GameManager : MonoBehaviour
     private void loadLevel()
     {
         if(_level != null) Destroy(_level);
-        Instantiate(_levelSelected);
+        _level = Instantiate(_levelSelected);
         SoulsManager.Instance.Setup();
         Setup();
     }
