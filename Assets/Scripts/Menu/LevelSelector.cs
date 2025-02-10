@@ -7,6 +7,8 @@ public class LevelSelector : MonoBehaviour
     [SerializeField] private DataLevelContainer _dataLevelContainer;
     [SerializeField] private GameObject _levelButtonPrefab;
     [SerializeField] private GameObject _levelStarter;
+    [SerializeField] private GameObject SceneManager;
+    [SerializeField] private string _strSceneToLoad;
 
     void Start()
     {
@@ -60,6 +62,12 @@ public class LevelSelector : MonoBehaviour
                 _levelStarter.transform.GetChild(2).GetChild(5).gameObject.SetActive(true);
                 break;
         }
+        _levelStarter.transform.GetChild(7).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
+        {
+            _dataLevelContainer.SceneToLoad = i;
+            Debug.Log("Scene to load: " + _dataLevelContainer.SceneToLoad);
+            SceneManager.GetComponent<SceneManager>().LoadScene(_strSceneToLoad);
+        });
         _levelStarter.SetActive(true);
         this.gameObject.transform.parent.parent.gameObject.SetActive(false);
     }

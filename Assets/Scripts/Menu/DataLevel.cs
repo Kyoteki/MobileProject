@@ -4,7 +4,6 @@ using UnityEngine;
 [System.Serializable]
 public class DataLevel
 {
-    private int _id;
     [SerializeField] private string _levelName;
     public string LevelName => _levelName;
     [SerializeField] private GameObject _prefab;
