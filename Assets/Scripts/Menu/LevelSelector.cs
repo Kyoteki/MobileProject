@@ -65,7 +65,6 @@ public class LevelSelector : MonoBehaviour
         _levelStarter.transform.GetChild(7).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
         {
             _dataLevelContainer.SceneToLoad = i;
-            Debug.Log("Scene to load: " + _dataLevelContainer.SceneToLoad);
             SceneManager.GetComponent<SceneManager>().LoadScene(_strSceneToLoad);
         });
         _levelStarter.SetActive(true);
