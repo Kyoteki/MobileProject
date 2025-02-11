@@ -330,6 +330,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6609035191766275809}
+  - component: {fileID: 7256183853452094969}
   m_Layer: 0
   m_Name: Level 1
   m_TagString: Untagged
@@ -356,6 +357,37 @@ Transform:
   - {fileID: 1887652283391716366}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7256183853452094969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5528948840815735545}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e22055c5af332b40a3959e55d229082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _obstacle: {fileID: 3636774623794843486, guid: eb96960254476884580e92c55606d2d8, type: 3}
+  _obstacleHolder: {fileID: 3035667140119534300}
+  _oneWay: {fileID: 6427987959894351325, guid: 9cf68e240a2097a419389585c5d46e58, type: 3}
+  _oneWayHolder: {fileID: 839758766279099431}
+  _river: {fileID: 6427987959894351325, guid: 81663fdc789898a4b857c27203e457c6, type: 3}
+  _riverHolder: {fileID: 241528042710778781}
+  _portal: {fileID: 4851551464865853027, guid: ee8dd97fa9dab47419f5c548d909c0ad, type: 3}
+  _portalHolder: {fileID: 192533066176443729}
+  _altar: {fileID: 696216535194715696, guid: fc4f76868cdee75449a24cda5b321901, type: 3}
+  _altarHolder: {fileID: 853615556203574540}
+  _soul: {fileID: 6943807902125826845, guid: a2b92396d7393764ca817f7563b30cd1, type: 3}
+  _soulHolder: {fileID: 4940766218440395066}
+  _player: {fileID: 7977707740525960043, guid: 394a576503a16af43901f2e54bb231ca, type: 3}
+  _playerHolder: {fileID: 4271093361196970915}
+  ObstacleLayers:
+    serializedVersion: 2
+    m_Bits: 192
+  maxX: 11
+  maxY: 5
 --- !u!1 &5923660199477868937
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,11 +26,11 @@ public class UI : MonoBehaviour
     private void ChangeMoveCaseUI()
     {
         string nbCaseRemaining = (_soulsManager.CountForHurt - (MovementPlayer.NbCaseMouv % _soulsManager.CountForHurt)).ToString();
-        _textMovement.text = $"Détérioration dans: {nbCaseRemaining}";
+        _textMovement.text = $"{nbCaseRemaining}";
     }
 
     private void ChangeScore()
     {
-         _textScore.text = $"Score: {_soulsManager.CountSoulsPurify.ToString()}"; 
+         _textScore.text = $"{_soulsManager.CountSoulsPurify.ToString()}"; 
     }
 }
