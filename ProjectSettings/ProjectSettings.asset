@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 28
-  productGUID: 6be995aade7a467468797eef5e76e8dc
+  productGUID: 72eac77f3922b554995292739ed00e65
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: MobileProject
+  productName: ProjetMobileTeam3
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.12156863, g: 0.12156863, b: 0.1254902, a: 1}
@@ -763,6 +763,103 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   captureStartupLogs: {}
   activeInputHandler: 0
+  windowsGamepadBackendHint: 0
+  cloudProjectId: 
+  framebufferDepthMemorylessMode: 0
+  qualitySettingsNames: []
+  projectName: 
+  organizationId: 
+  cloudEnabled: 0
+  legacyClampBlendShapeWeights: 0
+  hmiLoadingImage: {fileID: 0}
+  platformRequiresReadableAssets: 0
+  virtualTexturingSupportEnabled: 0
+  insecureHttpOption: 0
+  androidVulkanDenyFilterList: []
+  androidVulkanAllowFilterList: []
+  gcIncremental: 1
+  gcWBarrierValidation: 0
+  apiCompatibilityLevelPerPlatform: {}
+  editorAssembliesCompatibilityLevel: 1
+  m_RenderingPath: 1
+  m_MobileRenderingPath: 1
+  metroPackageName: ProjetMobileTeam3
+  metroPackageVersion: 
+  metroCertificatePath: 
+  metroCertificatePassword: 
+  metroCertificateSubject: 
+  metroCertificateIssuer: 
+  metroCertificateNotAfter: 0000000000000000
+  metroApplicationDescription: ProjetMobileTeam3
+  wsaImages: {}
+  metroTileShortName: 
+  metroTileShowName: 0
+  metroMediumTileShowName: 0
+  metroLargeTileShowName: 0
+  metroWideTileShowName: 0
+  metroSupportStreamingInstall: 0
+  metroLastRequiredScene: 0
+  metroDefaultTileSize: 1
+  metroTileForegroundText: 2
+  metroTileBackgroundColor: {r: 0.13333334, g: 0.17254902, b: 0.21568628, a: 0}
+  metroSplashScreenBackgroundColor: {r: 0.12941177, g: 0.17254902, b: 0.21568628, a: 1}
+  metroSplashScreenUseBackgroundColor: 0
+  syncCapabilities: 0
+  platformCapabilities: {}
+  metroTargetDeviceFamilies: {}
+  metroFTAName: 
+  metroFTAFileTypes: []
+  metroProtocolName: 
+  vcxProjDefaultLanguage: 
+  XboxOneProductId: 
+  XboxOneUpdateKey: 
+  XboxOneSandboxId: 
+  XboxOneContentId: 
+  XboxOneTitleId: 
+  XboxOneSCId: 
+  XboxOneGameOsOverridePath: 
+  XboxOnePackagingOverridePath: 
+  XboxOneAppManifestOverridePath: 
+  XboxOneVersion: 1.0.0.0
+  XboxOnePackageEncryption: 0
+  XboxOnePackageUpdateGranularity: 2
+  XboxOneDescription: 
+  XboxOneLanguage:
+  - enus
+  XboxOneCapability: []
+  XboxOneGameRating: {}
+  XboxOneIsContentPackage: 0
+  XboxOneEnhancedXboxCompatibilityMode: 0
+  XboxOneEnableGPUVariability: 1
+  XboxOneSockets: {}
+  XboxOneSplashScreen: {fileID: 0}
+  XboxOneAllowedProductIds: []
+  XboxOnePersistentLocalStorageSize: 0
+  XboxOneXTitleMemory: 8
+  XboxOneOverrideIdentityName: 
+  XboxOneOverrideIdentityPublisher: 
+  vrEditorSettings: {}
+  cloudServicesEnabled: {}
+  luminIcon:
+    m_Name: 
+    m_ModelFolderPath: 
+    m_PortalFolderPath: 
+  luminCert:
+    m_CertPath: 
+    m_SignPackage: 1
+  luminIsChannelApp: 0
+  luminVersion:
+    m_VersionCode: 1
+    m_VersionName: 
+  hmiPlayerDataPath: 
+  hmiForceSRGBBlit: 0
+  embeddedLinuxEnableGamepadInput: 0
+  hmiCpuConfiguration: 
+  hmiLogStartupTiming: 0
+  qnxGraphicConfPath: 
+  apiCompatibilityLevel: 6
+  captureStartupLogs: {}
+  activeInputHandler: 2
   windowsGamepadBackendHint: 0
   cloudProjectId: 
   framebufferDepthMemorylessMode: 0
