@@ -7,6 +7,8 @@ public class LevelSelector : MonoBehaviour
     [SerializeField] private DataLevelContainer _dataLevelContainer;
     [SerializeField] private GameObject _levelButtonPrefab;
     [SerializeField] private GameObject _levelStarter;
+    [SerializeField] private GameObject SceneManager;
+    [SerializeField] private string _strSceneToLoad;
 
     void Start()
     {
@@ -16,7 +18,7 @@ public class LevelSelector : MonoBehaviour
             GameObject levelButton = Instantiate(_levelButtonPrefab, transform);
             levelButton.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().sprite = levels[i].ImagePreviewMini;
             levelButton.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = levels[i].LevelName;
-            if(i>0 && !levels[i-1].IsCompleted)
+            if(i>0 && !levels[i-1].DataToSaves.IsCompleted)
             {
                 levelButton.transform.GetChild(2).gameObject.SetActive(true);
             }
@@ -30,12 +32,42 @@ public class LevelSelector : MonoBehaviour
         this.transform.position += new Vector3(fixposition, 0, 0);
     }
 
-    void Change(int i, List<DataLevel> levels)
+    private void Change(int i, List<DataLevel> levels)
     {
         _levelStarter.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().sprite = levels[i].ImagePreview;
         _levelStarter.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = levels[i].LevelName;
-        _levelStarter.transform.GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = levels[i].HighScore.ToString();
-        _levelStarter.transform.GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>().text = levels[i].BestStep.ToString();
-        _levelStarter.transform.GetChild(5).GetChild(1).GetComponent<TextMeshProUGUI>().text = levels[i].BestTime.ToString();
+        _levelStarter.transform.GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = levels[i].DataToSaves.HighScore.ToString();
+        _levelStarter.transform.GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>().text = levels[i].DataToSaves.BestStep.ToString();
+        _levelStarter.transform.GetChild(5).GetChild(1).GetComponent<TextMeshProUGUI>().text = levels[i].DataToSaves.BestTime.ToString();
+        switch(levels[i].DataToSaves.NbStars)
+        {
+            case 0:
+                _levelStarter.transform.GetChild(2).GetChild(3).gameObject.SetActive(false);
+                _levelStarter.transform.GetChild(2).GetChild(4).gameObject.SetActive(false);
+                _levelStarter.transform.GetChild(2).GetChild(5).gameObject.SetActive(false);
+                break;
+            case 1:
+                _levelStarter.transform.GetChild(2).GetChild(3).gameObject.SetActive(true);
+                _levelStarter.transform.GetChild(2).GetChild(4).gameObject.SetActive(false);
+                _levelStarter.transform.GetChild(2).GetChild(5).gameObject.SetActive(false);
+                break;
+            case 2:
+                _levelStarter.transform.GetChild(2).GetChild(3).gameObject.SetActive(true);
+                _levelStarter.transform.GetChild(2).GetChild(4).gameObject.SetActive(true);
+                _levelStarter.transform.GetChild(2).GetChild(5).gameObject.SetActive(false);
+                break;
+            case 3:
+                _levelStarter.transform.GetChild(2).GetChild(3).gameObject.SetActive(true);
+                _levelStarter.transform.GetChild(2).GetChild(4).gameObject.SetActive(true);
+                _levelStarter.transform.GetChild(2).GetChild(5).gameObject.SetActive(true);
+                break;
+        }
+        _levelStarter.transform.GetChild(7).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
+        {
+            _dataLevelContainer.SceneToLoad = i;
+            SceneManager.GetComponent<SceneManager>().LoadScene(_strSceneToLoad);
+        });
+        _levelStarter.SetActive(true);
+        this.gameObject.transform.parent.parent.gameObject.SetActive(false);
     }
 }

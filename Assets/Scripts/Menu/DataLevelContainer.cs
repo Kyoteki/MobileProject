@@ -4,6 +4,8 @@ using UnityEngine;
 public class DataLevelContainer : ScriptableObject
 {
     [SerializeField] private DataLevel[] _levels;
+    [SerializeField] private int _sceneToLoad;
+    public int SceneToLoad { get => _sceneToLoad; set => _sceneToLoad = value; }
     public DataLevel[] Levels => _levels;
 
     public DataLevel GetLevel(int id)
