@@ -60,10 +60,12 @@ public class GameManager : MonoBehaviour
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         StartTimer();
+        MovementPlayer.OnEndMove += EndGame;
     }
 
     private void EndGame()
     {
+        if (!SoulsManager.Instance.AllSoulsMeetEnd) return;
         int score = SoulsManager.Instance.CountSoulsPurify;
         float time = _timer;
         int stars = 0;
