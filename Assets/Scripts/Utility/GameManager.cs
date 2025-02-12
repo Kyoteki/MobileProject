@@ -1,6 +1,7 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,9 +9,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Player Settings")] 
     private GameObject _player;
-    public MovementPlayer MovementPlayer { get { return _player != null ? _player.GetComponent<MovementPlayer>() : null; } }
-    public Vector3 PlayerPosition { get { return _player != null ? _player.transform.position : Vector3.zero; } }
-    public SoulPlayer SoulPlayer { get { return _player != null ? _player.gameObject.GetComponent<SoulPlayer>() : null; } }
+    public MovementPlayer MovementPlayer { get { return _player != null ? _player.GetComponent<MovementPlayer>() : throw new ArgumentNullException("No player movement"); } }
+    public Vector3 PlayerPosition { get { return _player != null ? _player.transform.position : throw new ArgumentNullException("No player position"); } }
+    public SoulPlayer SoulPlayer { get { return _player != null ? _player.gameObject.GetComponent<SoulPlayer>() : throw new ArgumentNullException("No soul player"); } }
 
 
     [Header("Level Settings")]
@@ -27,8 +28,6 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            //A RETIRER
-            Setup();
         }
         else
         {
@@ -50,14 +49,15 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         _timer += Time.deltaTime;
+        EndGame();
     }
 
     void Setup()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
         StartTimer();
-        MovementPlayer.OnEndMove += EndGame;
     }
+
 
     private void EndGame()
     {
@@ -66,15 +66,15 @@ public class GameManager : MonoBehaviour
         float time = _timer;
         int stars = 0;
         int scorePercent = SoulsManager.Instance.CountSouls / score * 100;
-        if(scorePercent > _scoreOneStar) stars++;
-        if(scorePercent > _scoreTwoStar) stars++;
-        if(scorePercent > _scoreThreeStar) stars++;
+        if(scorePercent >= _scoreOneStar) stars++;
+        if(scorePercent >= _scoreTwoStar) stars++;
+        if(scorePercent >= _scoreThreeStar) stars++;
         DataToSaves levelData = _levelContainer.GetCurrentLevel().DataToSaves;
         if(levelData.NbStars < stars) levelData.NbStars = stars;
+        if(!levelData.IsCompleted || levelData.BestStep > MovementPlayer.NbCaseMouv) levelData.BestStep = MovementPlayer.NbCaseMouv;
+        if(!levelData.IsCompleted || levelData.BestTime > time) levelData.BestTime = time;
+        if (!levelData.IsCompleted || levelData.HighScore > SoulsManager.Instance.CountSoulsPurify) levelData.HighScore = SoulsManager.Instance.CountSoulsPurify;
         if(stars > 0) levelData.IsCompleted = true;
-        if(levelData.BestStep > MovementPlayer.NbCaseMouv) levelData.BestStep = MovementPlayer.NbCaseMouv;
-        if(levelData.BestTime > time) levelData.BestTime = time;
-        if (levelData.HighScore > SoulsManager.Instance.CountSoulsPurify) levelData.HighScore = SoulsManager.Instance.CountSoulsPurify;
         SaveManager.Instance.Save();
     }
 

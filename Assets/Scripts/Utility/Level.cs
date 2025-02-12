@@ -57,7 +57,7 @@ public class Level : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        PrefabUtility.ApplyPrefabInstance(gameObject, InteractionMode.UserAction);
+        if (!PrefabUtility.IsPartOfPrefabInstance(this)) PrefabUtility.ApplyPrefabInstance(gameObject, InteractionMode.UserAction);
     }
 
     [SerializeField] private float maxX = 10.5f;
