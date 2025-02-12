@@ -3,6 +3,8 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
+
+#if false
 public class Tool : EditorWindow
 {
     [SerializeField] GameObject _obstacle;
@@ -102,3 +104,4 @@ public class Tool : EditorWindow
         }
     }
 }
+#endif

@@ -33,6 +33,11 @@ public class Level : MonoBehaviour
 
     [SerializeField] LayerMask ObstacleLayers;
 
+    private void Awake()
+    {
+        if(!PrefabUtility.IsPartOfPrefabInstance(this)) enabled = false;
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && AsChoose)
