@@ -1,4 +1,5 @@
 using System;
+using UnityEditor;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -75,6 +76,7 @@ public class GameManager : MonoBehaviour
     private void loadLevel()
     {
         if(_level != null) Destroy(_level);
+        if(_levelSelected == null) throw new ArgumentNullException("No level selected");
         _level = Instantiate(_levelSelected);
         SoulsManager.Instance.Setup();
         Setup();
