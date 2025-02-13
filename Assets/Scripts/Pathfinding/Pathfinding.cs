@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class Pathfinding : MonoBehaviour
 {
-    [Header("Pathfinding Settings")]
-    [SerializeField] private Transform seeker;
-    [SerializeField] private Transform target;
+    public static Pathfinding Instance { get; private set; }
 
-    Grid _grid;
+    [Header("Pathfinding Settings")]
+    [SerializeField] private Grid _grid;
+
 
     private void Awake()
     {
-        _grid = GetComponent<Grid>();
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
-    private void Update()
-    {
-        FindPath(seeker.position, target.position);
-    }
-
-    private void FindPath(Vector2 startPos, Vector2 targetPos)
+    public Vector2 FindPath(Vector2 startPos, Vector2 targetPos)
     {
         // Change the vector position into node position
         Node startNode = _grid.GetNodeFromWorldPoint(startPos);
@@ -65,8 +67,7 @@ public class Pathfinding : MonoBehaviour
             if(currentNode == targetNode)
             {
                 // Go to the function to see what it does
-                RetracePath(startNode, targetNode);
-                return;
+                return RetracePath(startNode, targetNode);
             }
 
             // Get the neighbor of the node
@@ -101,12 +102,13 @@ public class Pathfinding : MonoBehaviour
                     }
                 }
             }
-
         }
+
+        return startPos;
     }
 
     // This function get the path when the algorithm is finished 
-    private void RetracePath(Node startNode, Node endNode)
+    private Vector2 RetracePath(Node startNode, Node endNode)
     {
         // We create a path list which will regroup all the node that creates the path 
         // It starts from the endNode (currentNode = endNode)
@@ -123,8 +125,9 @@ public class Pathfinding : MonoBehaviour
         }
 
         path.Reverse(); // we also reverse the list because we want it to go from startToEnd 
+        _grid.Paths.Add(path); // this is just for the grid script to add a color to those specific node
 
-        _grid.path = path; // this is just for the grid script to add a color to those specific node
+        return path[0].worldPosition;
     }
 
     // Get the distance between two node 

@@ -1,4 +1,3 @@
-using NUnit.Framework;
 using System;
 using UnityEngine;
 using System.Collections.Generic;
@@ -17,6 +16,9 @@ public class Grid : MonoBehaviour
     // Size of each node, size of the array (array of X number of nodes)
     private int _gridSizeX, _gridSizeY;
 
+    public List<List<Node>> Paths { get; set; }
+    private List<Color> _colorsPath = new List<Color>();
+ 
     private void Start()
     {
         // Calculate the diameter using the radius
@@ -26,12 +28,13 @@ public class Grid : MonoBehaviour
         _gridSizeX = Mathf.RoundToInt(_gridWorldSize.x / _nodeDiameter);
         _gridSizeY = Mathf.RoundToInt(_gridWorldSize.y / _nodeDiameter);
 
-        CreateGrid();
-    }
+        Paths = new List<List<Node>>();
+        for (int i = 0; i < 99; i++)
+        {
+            _colorsPath.Add(UnityEngine.Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f));
+        }
 
-    private void Update()
-    {
-        // Debug.Log(path.Count);
+        CreateGrid();
     }
 
     private void CreateGrid()
@@ -60,6 +63,24 @@ public class Grid : MonoBehaviour
 
                 // Then assign at position x and y in the array a new node with the walkable parameter and the worldPoint of the node
                 _grid[x, y] = new Node(walkable, worldPoint, x, y);
+            }
+        }
+    }
+
+    public void LoadGrid()
+    {
+        UpdateGrid();
+        GameManager.Instance.MovementPlayer.OnStartMove += ResetPathsGizmos;
+        GameManager.Instance.MovementPlayer.OnStartMove += UpdateGrid;
+    }
+
+    private void UpdateGrid()
+    {
+        for (int x = 0; x < _gridSizeX; x++)
+        {
+            for (int y = 0; y < _gridSizeY; y++)
+            {
+                _grid[x, y].isWalkable = !(Physics2D.OverlapBox(_grid[x, y].worldPosition, new Vector2(_nodeDiameter - .1f, _nodeDiameter - .1f), 0, _unwalkableMask));
             }
         }
     }
@@ -121,28 +142,36 @@ public class Grid : MonoBehaviour
         return _grid[x,y];
     }
 
-
-    public List<Node> path;
+    private void ResetPathsGizmos()
+    {
+        Paths.Clear();
+    }
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position, new Vector3(_gridWorldSize.x, _gridWorldSize.y, 1));
-        
+
         if (_grid != null)
         {
             foreach (Node n in _grid)
             {
                 Gizmos.color = (n.isWalkable) ? Color.white : Color.red;
 
-                if(path != null)
-                {
-                    if(path.Contains(n))
-                    {
-                        Gizmos.color = Color.black;
-                    }
-                }
-
                 Gizmos.DrawCube(n.worldPosition, Vector3.one * (_nodeDiameter - .1f));
+            }
+            if (Paths != null)
+            {
+                int i = 0;
+                foreach (List<Node> path in Paths)
+                {
+                    foreach (Node n in path)
+                    {
+                        Gizmos.color = _colorsPath[i];
+
+                        Gizmos.DrawCube(n.worldPosition, Vector3.one * (_nodeDiameter - .1f));
+                    }
+                    i++;
+                }
             }
         }
     }
