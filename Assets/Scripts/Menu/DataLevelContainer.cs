@@ -17,8 +17,16 @@ public class DataLevelContainer : ScriptableObject
         return _levels[_sceneToLoad];
     }
 
-    public void nextLevel()
+    public void NextLevel()
     {
         _sceneToLoad++;
+    }
+
+    public void ResetData()
+    {
+        foreach (DataLevel level in Levels)
+        {
+            level.DataToSaves = new DataToSaves();
+        }
     }
 }

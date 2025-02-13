@@ -93,7 +93,7 @@ public class GameManager : MonoBehaviour
     }
     public void nextLevel()
     {
-        _levelContainer.nextLevel();
+        _levelContainer.NextLevel();
         loadLevel();
     }
 }
