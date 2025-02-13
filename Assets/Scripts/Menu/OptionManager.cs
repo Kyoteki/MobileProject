@@ -10,12 +10,21 @@ public class OptionManager : MonoBehaviour
     [SerializeField] private GameObject _vfxManager;
     [SerializeField] private MovementButton _movementButton;
     [Header("Options UI")]
+    [SerializeField] private GameObject _optionsUI;
     [SerializeField] private GameObject _sliderMusic;
     [SerializeField] private GameObject _sliderSound;
     [SerializeField] private GameObject _sliderVFX;
     [SerializeField] private GameObject _toggleMoveUI;
 
     void Update()
+    {
+        if(_optionsUI.activeSelf)
+        {
+            UpdateOptions();
+        }
+    }
+
+    void UpdateOptions()
     {
         if (_musicManager != null)
         {
