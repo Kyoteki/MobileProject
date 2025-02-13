@@ -3,13 +3,15 @@ using UnityEngine;
 public class MovementButton : MonoBehaviour
 {
     private MovementPlayer _mouvementPlayer;
+    private bool _doShowButton = true;
+    public bool DoShowButton { get => _doShowButton; set => _doShowButton = value; }
 
     private void Start()
     {
         _mouvementPlayer = GameManager.Instance.MovementPlayer;
         
         _mouvementPlayer.OnStartMove += Hide;
-        _mouvementPlayer.OnEndMove += ShowCorrectButton;
+        if(_doShowButton){_mouvementPlayer.OnEndMove += ShowCorrectButton;}
     }
 
     void OnMouseDown()

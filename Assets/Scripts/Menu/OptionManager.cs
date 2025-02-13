@@ -31,7 +31,7 @@ public class OptionManager : MonoBehaviour
         }
         if (_movementButton != null)
         {
-            // Hide/Show UI
+            _movementButton.DoShowButton = _toggleMoveUI.GetComponent<Toggle>().isOn;
         }
     }
 

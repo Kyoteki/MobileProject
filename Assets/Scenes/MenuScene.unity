@@ -4580,7 +4580,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _musicManager: {fileID: 2133018665}
   _soundManager: {fileID: 886845125}
-  _vfxManager: {fileID: 0}
+  _vfxManager: {fileID: 621743390}
   _movementButton: {fileID: 0}
   _sliderMusic: {fileID: 460524937}
   _sliderSound: {fileID: 1874385491}
