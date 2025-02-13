@@ -10,6 +10,7 @@ public class SoulsManager : MonoBehaviour
     public int CountSouls { get; private set; }
     public int CountSoulsCorrupt { get; private set; }
     public int CountSoulsPurify { get; private set; }
+    public bool AllSoulsMeetEnd => CountSouls == CountSoulsCorrupt + CountSoulsPurify;
     public static SoulsManager Instance { get; private set; }
 
     private void Awake()

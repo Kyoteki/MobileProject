@@ -33,6 +33,11 @@ public class Level : MonoBehaviour
 
     [SerializeField] LayerMask ObstacleLayers;
 
+    private void Awake()
+    {
+        if(!PrefabUtility.IsPartOfPrefabInstance(this)) enabled = false;
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && AsChoose)
@@ -52,7 +57,7 @@ public class Level : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        PrefabUtility.ApplyPrefabInstance(gameObject, InteractionMode.UserAction);
+        if (!PrefabUtility.IsPartOfPrefabInstance(this)) PrefabUtility.ApplyPrefabInstance(gameObject, InteractionMode.UserAction);
     }
 
     [SerializeField] private float maxX = 10.5f;

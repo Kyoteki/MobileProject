@@ -12,4 +12,13 @@ public class DataLevelContainer : ScriptableObject
     {
         return _levels[id];
     }
+    public DataLevel GetCurrentLevel()
+    {
+        return _levels[_sceneToLoad];
+    }
+
+    public void nextLevel()
+    {
+        _sceneToLoad++;
+    }
 }

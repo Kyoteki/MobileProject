@@ -1,25 +1,22 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
     [Header("Player Settings")] 
-    //[SerializeField] private int _playerScoreFromPurify = 4;
-    //public int PlayerScoreFromPurify { get { return _playerScoreFromPurify; } }
-    //[SerializeField] private int _currentPlayerScore = 4;
-
     private GameObject _player;
-    public MovementPlayer MovementPlayer { get { return _player != null ? _player.GetComponent<MovementPlayer>() : null; } }
-    public Vector3 PlayerPosition { get { return _player != null ? _player.transform.position : Vector3.zero; } }
-    public SoulPlayer SoulPlayer { get { return _player != null ? _player.gameObject.GetComponent<SoulPlayer>() : null; } }
+    public MovementPlayer MovementPlayer { get { return _player != null ? _player.GetComponent<MovementPlayer>() : throw new ArgumentNullException("No player movement"); } }
+    public Vector3 PlayerPosition { get { return _player != null ? _player.transform.position : throw new ArgumentNullException("No player position"); } }
+    public SoulPlayer SoulPlayer { get { return _player != null ? _player.gameObject.GetComponent<SoulPlayer>() : throw new ArgumentNullException("No soul player"); } }
 
 
     [Header("Level Settings")]
     private GameObject _level;
-    [SerializeField] private GameObject _levelSelected;
+    [SerializeField] DataLevelContainer _levelContainer;
 
     [Header("Score Settings")]
     [SerializeField] private int _scoreOneStar = 60;
@@ -31,8 +28,6 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            //A RETIRER
-            Setup();
         }
         else
         {
@@ -54,6 +49,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         _timer += Time.deltaTime;
+        EndGame();
     }
 
     void Setup()
@@ -62,28 +58,42 @@ public class GameManager : MonoBehaviour
         StartTimer();
     }
 
+
     private void EndGame()
     {
+        if (!SoulsManager.Instance.AllSoulsMeetEnd) return;
         int score = SoulsManager.Instance.CountSoulsPurify;
         float time = _timer;
         int stars = 0;
         int scorePercent = SoulsManager.Instance.CountSouls / score * 100;
-        if(scorePercent > _scoreOneStar) stars++;
-        if(scorePercent > _scoreTwoStar) stars++;
-        if(scorePercent > _scoreThreeStar) stars++;
+        if(scorePercent >= _scoreOneStar) stars++;
+        if(scorePercent >= _scoreTwoStar) stars++;
+        if(scorePercent >= _scoreThreeStar) stars++;
+        DataToSaves levelData = _levelContainer.GetCurrentLevel().DataToSaves;
+        if(levelData.NbStars < stars) levelData.NbStars = stars;
+        if(!levelData.IsCompleted || levelData.BestStep > MovementPlayer.NbCaseMouv) levelData.BestStep = MovementPlayer.NbCaseMouv;
+        if(!levelData.IsCompleted || levelData.BestTime > time) levelData.BestTime = time;
+        if (!levelData.IsCompleted || levelData.HighScore > SoulsManager.Instance.CountSoulsPurify) levelData.HighScore = SoulsManager.Instance.CountSoulsPurify;
+        if(stars > 0) levelData.IsCompleted = true;
+        SaveManager.Instance.Save();
     }
 
     private void loadLevel()
     {
         if(_level != null) Destroy(_level);
-        if(_levelSelected == null) throw new ArgumentNullException("No level selected");
-        _level = Instantiate(_levelSelected);
+        if(_levelContainer.SceneToLoad < 0 || _levelContainer.SceneToLoad >= _levelContainer.Levels.Length) throw new ArgumentNullException("No level selected");
+        _level = Instantiate(_levelContainer.GetCurrentLevel().Prefab);
         SoulsManager.Instance.Setup();
         Setup();
     }
 
-    private void restartLevel()
+    public void restartLevel()
     {
+        loadLevel();
+    }
+    public void nextLevel()
+    {
+        _levelContainer.nextLevel();
         loadLevel();
     }
 }

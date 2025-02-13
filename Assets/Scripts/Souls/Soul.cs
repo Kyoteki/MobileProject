@@ -47,7 +47,7 @@ public class Soul : MonoBehaviour
 
     void HurtSelf()
     {
-        int stepResult = MovementPlayer.NbCaseMouv / SoulsManager.Instance.CountForHurt + (int)_state;
+        int stepResult = MovementPlayer.NbCaseMouv / SoulsManager.Instance.CountForHurt;
         if (stepResult != (int)_state)
         {
             _state = (State)(stepResult);
