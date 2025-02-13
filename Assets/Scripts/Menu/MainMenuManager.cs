@@ -14,6 +14,7 @@ public class MainMenuManager : MonoBehaviour
         _levelSelector.SetActive(true);
         _levelStarter.SetActive(false);
         _btContainer.SetActive(false);
+        _optionContainer.SetActive(false);
     }
 
     public void ReturnMenuBt()
@@ -27,6 +28,7 @@ public class MainMenuManager : MonoBehaviour
     public void OptionMenu()
     {
         _optionContainer.SetActive(true);
+        _levelSelector.SetActive(false);
         _btContainer.SetActive(false);
     }
 }
