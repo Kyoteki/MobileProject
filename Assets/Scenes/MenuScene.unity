@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 422806452}
   - component: {fileID: 422806451}
   m_Layer: 0
-  m_Name: VfxSource
+  m_Name: SfxSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -925,7 +925,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &504530930
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1304,7 +1304,7 @@ GameObject:
   - component: {fileID: 621743392}
   - component: {fileID: 621743391}
   m_Layer: 0
-  m_Name: VfxManager
+  m_Name: SfxManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1335,8 +1335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbeafa49704188348818a94370d1eae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _vfxSource: {fileID: 422806451}
-  _vfxLibrary: {fileID: 621743391}
+  _sfxSource: {fileID: 422806451}
+  _sfxLibrary: {fileID: 0}
 --- !u!4 &621743393
 Transform:
   m_ObjectHideFlags: 0
@@ -1595,7 +1595,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -31.631233, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2547,7 +2547,7 @@ GameObject:
   - component: {fileID: 1080376539}
   - component: {fileID: 1080376538}
   m_Layer: 5
-  m_Name: TxtVFX
+  m_Name: TxtSFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2592,7 +2592,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: VFX
+  m_text: SFX
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2657,7 +2657,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -31.631233, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2747,8 +2747,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.071201324, y: -1.7394}
-  m_SizeDelta: {x: 2988.4182, y: 1340.1173}
+  m_AnchoredPosition: {x: 0.06990051, y: 0.000022888184}
+  m_SizeDelta: {x: 2988.1482, y: 1340.0487}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1116726033
 MonoBehaviour:
@@ -4743,7 +4743,7 @@ GameObject:
   - component: {fileID: 1515535088}
   - component: {fileID: 1515535089}
   m_Layer: 5
-  m_Name: SliderVFX
+  m_Name: SliderSFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5898,7 +5898,7 @@ GameObject:
   - component: {fileID: 1874385492}
   - component: {fileID: 1874385493}
   m_Layer: 5
-  m_Name: SliderSound
+  m_Name: SliderAtmosphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6394,7 +6394,7 @@ GameObject:
   - component: {fileID: 2064208873}
   - component: {fileID: 2064208872}
   m_Layer: 5
-  m_Name: TxtSound
+  m_Name: TxtAtmosphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6439,7 +6439,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sound
+  m_text: Atmosphere
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -6504,7 +6504,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -33.608116, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
