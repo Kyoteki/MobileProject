@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private int _scoreTwoStar = 80;
     [SerializeField] private int _scoreThreeStar = 100;
 
+    [Header("Pathfinding Settings")]
+    [SerializeField] private Grid _grid;
+
     private void Awake()
     {
         if (Instance == null)
@@ -85,6 +88,7 @@ public class GameManager : MonoBehaviour
         _level = Instantiate(_levelContainer.GetCurrentLevel().Prefab);
         SoulsManager.Instance.Setup();
         Setup();
+        _grid.LoadGrid();
     }
 
     public void restartLevel()
@@ -93,7 +97,7 @@ public class GameManager : MonoBehaviour
     }
     public void nextLevel()
     {
-        _levelContainer.nextLevel();
+        _levelContainer.NextLevel();
         loadLevel();
     }
 }
