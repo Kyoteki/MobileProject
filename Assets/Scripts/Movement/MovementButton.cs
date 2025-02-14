@@ -29,4 +29,10 @@ public class MovementButton : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    private void OnDestroy()
+    {
+        _mouvementPlayer.OnStartMove -= Hide;
+        _mouvementPlayer.OnEndMove -= ShowCorrectButton;
+    }
 }

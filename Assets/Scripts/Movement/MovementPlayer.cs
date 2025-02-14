@@ -8,7 +8,7 @@ public class MovementPlayer : MonoBehaviour
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private float _speed = 1;
     private static int _nbCaseMouv = 0;
-    public static int NbCaseMouv { get => _nbCaseMouv; private set => _nbCaseMouv = value; }
+    public static int NbCaseMouv { get => _nbCaseMouv; set => _nbCaseMouv = value; }
     [SerializeField] private List<Vector3> _pathList = new List<Vector3>();
     public List<Vector3> PathList { get => _pathList; set => _pathList = value; }
     [SerializeField] UnityEvent  _onStartMove = new UnityEvent();
@@ -16,6 +16,7 @@ public class MovementPlayer : MonoBehaviour
     [SerializeField] UnityEvent  _onEndMove = new UnityEvent();
     public event Action OnEndMove;
     [SerializeField] UnityEvent  _onTP = new UnityEvent();
+    public event Action OnStop;
     private bool _isMoving = false;
     public bool IsMoving { get => _isMoving; set => _isMoving = value; }
     private bool _doCountMove = true;
@@ -60,6 +61,7 @@ public class MovementPlayer : MonoBehaviour
             _isMoving = false;
             _onEndMove?.Invoke();
             OnEndMove?.Invoke();
+            OnStop?.Invoke();
             return;
         }
         if (_doCountMove)
