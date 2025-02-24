@@ -9,6 +9,7 @@ public class LevelSelector : MonoBehaviour
     [SerializeField] private GameObject _levelStarter;
     [SerializeField] private GameObject SceneManager;
     [SerializeField] private string _strSceneToLoad;
+    [SerializeField] private GameObject _percentFinishText;
 
     void Start()
     {
@@ -39,35 +40,13 @@ public class LevelSelector : MonoBehaviour
         _levelStarter.transform.GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = levels[i].DataToSaves.HighScore.ToString();
         _levelStarter.transform.GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>().text = levels[i].DataToSaves.BestStep.ToString();
         _levelStarter.transform.GetChild(5).GetChild(1).GetComponent<TextMeshProUGUI>().text = levels[i].DataToSaves.BestTime.ToString();
-        switch(levels[i].DataToSaves.NbStars)
-        {
-            case 0:
-                _levelStarter.transform.GetChild(2).GetChild(3).gameObject.SetActive(false);
-                _levelStarter.transform.GetChild(2).GetChild(4).gameObject.SetActive(false);
-                _levelStarter.transform.GetChild(2).GetChild(5).gameObject.SetActive(false);
-                break;
-            case 1:
-                _levelStarter.transform.GetChild(2).GetChild(3).gameObject.SetActive(true);
-                _levelStarter.transform.GetChild(2).GetChild(4).gameObject.SetActive(false);
-                _levelStarter.transform.GetChild(2).GetChild(5).gameObject.SetActive(false);
-                break;
-            case 2:
-                _levelStarter.transform.GetChild(2).GetChild(3).gameObject.SetActive(true);
-                _levelStarter.transform.GetChild(2).GetChild(4).gameObject.SetActive(true);
-                _levelStarter.transform.GetChild(2).GetChild(5).gameObject.SetActive(false);
-                break;
-            case 3:
-                _levelStarter.transform.GetChild(2).GetChild(3).gameObject.SetActive(true);
-                _levelStarter.transform.GetChild(2).GetChild(4).gameObject.SetActive(true);
-                _levelStarter.transform.GetChild(2).GetChild(5).gameObject.SetActive(true);
-                break;
-        }
         _levelStarter.transform.GetChild(7).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
         {
             _dataLevelContainer.SceneToLoad = i;
             SceneManager.GetComponent<SceneManager>().LoadScene(_strSceneToLoad);
         });
         _levelStarter.SetActive(true);
+        _percentFinishText.GetComponent<TextMeshProUGUI>().text = levels[i].DataToSaves.PercentFinish.ToString() + "%";
         this.gameObject.transform.parent.parent.gameObject.SetActive(false);
     }
 }
