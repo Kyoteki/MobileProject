@@ -23,7 +23,7 @@ public class Soul : MonoBehaviour
     {
         _movementPlayer = GameManager.Instance.MovementPlayer;
 
-        _movementPlayer.OnEndMove += HurtSelf;
+        _movementPlayer.OnStepEnd += HurtSelf;
         //A SUPRIMMERR!!!!!!!!!!!!!!!!!!!!!
         switch (_state)
         {
@@ -47,40 +47,37 @@ public class Soul : MonoBehaviour
 
     void HurtSelf()
     {
-        int stepResult = MovementPlayer.NbCaseMouv / SoulsManager.Instance.CountForHurt;
-        if (stepResult != (int)_state)
+        int newState = (int)_state + 1;
+        _state = (State)(newState);
+        if (_state == State.stateDie)
         {
-            _state = (State)(stepResult);
-            if (_state == State.stateDie)
-            {
-                OnCorrupt?.Invoke();
-                _onCorrupt?.Invoke();
-                Destroy(gameObject);
-            }
-            else
-            {
-                _onHurt?.Invoke();
-                _spriteRenderer.sprite = _sprites[stepResult];
-            }
-            //A SUPRIMMERR!!!!!!!!!!!!!!!!!!!!!
-            switch (_state)
-            {
-                case State.stateOne:
-                    _spriteRenderer.color = Color.green;
-                    break;
-                case State.stateTwo:
-                    _spriteRenderer.color = Color.yellow;
-                    break;
-                case State.stateThree:
-                    _spriteRenderer.color = Color.red;
-                    break;
-                case State.stateFour:
-                    _spriteRenderer.color = Color.gray;
-                    break;
-                case State.stateFive:
-                    _spriteRenderer.color = Color.black;
-                    break;
-            }
+            OnCorrupt?.Invoke();
+            _onCorrupt?.Invoke();
+            Destroy(gameObject);
+        }
+        else
+        {
+            _onHurt?.Invoke();
+            _spriteRenderer.sprite = _sprites[newState];
+        }
+        //A SUPRIMMERR!!!!!!!!!!!!!!!!!!!!!
+        switch (_state)
+        {
+            case State.stateOne:
+                _spriteRenderer.color = Color.green;
+                break;
+            case State.stateTwo:
+                _spriteRenderer.color = Color.yellow;
+                break;
+            case State.stateThree:
+                _spriteRenderer.color = Color.red;
+                break;
+            case State.stateFour:
+                _spriteRenderer.color = Color.gray;
+                break;
+            case State.stateFive:
+                _spriteRenderer.color = Color.black;
+                break;
         }
     }
 

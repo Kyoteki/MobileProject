@@ -64,20 +64,15 @@ public class GameManager : MonoBehaviour
         if (!SoulsManager.Instance.AllSoulsMeetEnd) return;
         int score = SoulsManager.Instance.CountSoulsPurify;
         float time = _timer;
-        int stars = 0;
         int scorePercent = SoulsManager.Instance.CountSouls / score * 100;
-        if(scorePercent >= _scoreOneStar) stars++;
-        if(scorePercent >= _scoreTwoStar) stars++;
-        if(scorePercent >= _scoreThreeStar) stars++;
         DataToSaves levelData = _levelContainer.GetCurrentLevel().DataToSaves;
-        if(levelData.NbStars < stars) levelData.NbStars = stars;
         if(!levelData.IsCompleted || levelData.BestStep > MovementPlayer.NbCaseMouv) levelData.BestStep = MovementPlayer.NbCaseMouv;
         if(!levelData.IsCompleted || levelData.BestTime > time) levelData.BestTime = time;
         if (!levelData.IsCompleted || levelData.HighScore > SoulsManager.Instance.CountSoulsPurify) levelData.HighScore = SoulsManager.Instance.CountSoulsPurify;
-        if(stars > 0) levelData.IsCompleted = true;
+        if(scorePercent > 70) levelData.IsCompleted = true;
         SaveManager.Instance.Save();
     }
-
+    
     private void loadLevel()
     {
         if(_level != null) Destroy(_level);

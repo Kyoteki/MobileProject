@@ -9,6 +9,7 @@ public class MovementPlayer : MonoBehaviour
     [SerializeField] private float _speed = 1;
     private static int _nbCaseMouv = 0;
     public static int NbCaseMouv { get => _nbCaseMouv; set => _nbCaseMouv = value; }
+    private int NbCaseMouvLast { get; set; }
     [SerializeField] private List<Vector3> _pathList = new List<Vector3>();
     public List<Vector3> PathList { get => _pathList; set => _pathList = value; }
     [SerializeField] UnityEvent  _onStartMove = new UnityEvent();
@@ -17,11 +18,17 @@ public class MovementPlayer : MonoBehaviour
     public event Action OnEndMove;
     [SerializeField] UnityEvent  _onTP = new UnityEvent();
     public event Action OnStop;
+    public event Action OnStepEnd;
     private bool _isMoving = false;
     public bool IsMoving { get => _isMoving; set => _isMoving = value; }
     private bool _doCountMove = true;
     public bool DoCountMove { get => _doCountMove; set => _doCountMove = value; }
     private Vector3 _nextPos;
+
+    private void Start()
+    {
+        NbCaseMouvLast = SoulsManager.Instance.CountForHurt;
+    }
 
     void Update()
     {
@@ -62,6 +69,12 @@ public class MovementPlayer : MonoBehaviour
             _onEndMove?.Invoke();
             OnEndMove?.Invoke();
             OnStop?.Invoke();
+            NbCaseMouvLast--;
+            if (NbCaseMouvLast == 0)
+            {
+                OnStepEnd?.Invoke();
+                NbCaseMouvLast = SoulsManager.Instance.CountForHurt;
+            }
             return;
         }
         if (_doCountMove)
@@ -94,5 +107,10 @@ public class MovementPlayer : MonoBehaviour
     {
         transform.position = pos;
         _onTP?.Invoke();
+    }
+
+    public void AddCaseMov(int nb)
+    {
+        NbCaseMouvLast += nb;
     }
 }

@@ -367,6 +367,8 @@ MonoBehaviour:
   _portalHolder: {fileID: 192533066176443729}
   _altar: {fileID: 696216535194715696, guid: fc4f76868cdee75449a24cda5b321901, type: 3}
   _altarHolder: {fileID: 853615556203574540}
+  _addMorePower: {fileID: 696216535194715696, guid: 185196429f6d92243a983a123e545071, type: 3}
+  _addMorePowerHolder: {fileID: 853615556203574540}
   _soul: {fileID: 6943807902125826845, guid: a2b92396d7393764ca817f7563b30cd1, type: 3}
   _soulHolder: {fileID: 4940766218440395066}
   _player: {fileID: 7977707740525960043, guid: 394a576503a16af43901f2e54bb231ca, type: 3}
