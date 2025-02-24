@@ -17,6 +17,9 @@ public class Level : MonoBehaviour
     public void ChoosePortal() { _choosen = _portal; _choosenHolder = _portalHolder; }
     [SerializeField] GameObject _altar;
     [SerializeField] GameObject _altarHolder;
+    public void ChooseAddMorePower() { _choosen = _addMorePower; _choosenHolder = _addMorePowerHolder; }
+    [SerializeField] GameObject _addMorePower;
+    [SerializeField] GameObject _addMorePowerHolder;
     public void ChooseAltar() { _choosen = _altar; _choosenHolder = _altarHolder; }
     [SerializeField] GameObject _soul;
     [SerializeField] GameObject _soulHolder;
@@ -57,7 +60,7 @@ public class Level : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        if (PrefabUtility.IsPartOfPrefabInstance(this)) PrefabUtility.ApplyPrefabInstance(gameObject, InteractionMode.UserAction);
+        if (enabled) PrefabUtility.ApplyPrefabInstance(gameObject, InteractionMode.UserAction);
     }
 
     [SerializeField] private float maxX = 10.5f;
