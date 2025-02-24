@@ -18,7 +18,7 @@ MonoBehaviour:
     _imagePreviewMini: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     _imagePreview: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     _dataToSaves:
-      _nbStars: 0
+      _percentFinish: 70
       _bestStep: 0
       _highScore: 0
       _isCompleted: 0
@@ -28,7 +28,7 @@ MonoBehaviour:
     _imagePreviewMini: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     _imagePreview: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     _dataToSaves:
-      _nbStars: 0
+      _percentFinish: 0
       _bestStep: 0
       _highScore: 0
       _isCompleted: 0
@@ -38,7 +38,7 @@ MonoBehaviour:
     _imagePreviewMini: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     _imagePreview: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     _dataToSaves:
-      _nbStars: 0
+      _percentFinish: 0
       _bestStep: 0
       _highScore: 0
       _isCompleted: 0

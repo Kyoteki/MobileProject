@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelSelector : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class LevelSelector : MonoBehaviour
     [SerializeField] private GameObject _levelStarter;
     [SerializeField] private GameObject SceneManager;
     [SerializeField] private string _strSceneToLoad;
-    [SerializeField] private GameObject _percentFinishText;
 
     void Start()
     {
@@ -37,16 +37,17 @@ public class LevelSelector : MonoBehaviour
     {
         _levelStarter.transform.GetChild(0).GetComponent<UnityEngine.UI.Image>().sprite = levels[i].ImagePreview;
         _levelStarter.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = levels[i].LevelName;
-        _levelStarter.transform.GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = levels[i].DataToSaves.HighScore.ToString();
-        _levelStarter.transform.GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>().text = levels[i].DataToSaves.BestStep.ToString();
-        _levelStarter.transform.GetChild(5).GetChild(1).GetComponent<TextMeshProUGUI>().text = levels[i].DataToSaves.BestTime.ToString();
-        _levelStarter.transform.GetChild(7).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
+        _levelStarter.transform.GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>().text = levels[i].DataToSaves.HighScore.ToString();
+        _levelStarter.transform.GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = levels[i].DataToSaves.BestStep.ToString();
+        _levelStarter.transform.GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>().text = levels[i].DataToSaves.BestTime.ToString();
+        _levelStarter.transform.GetChild(6).GetComponent<UnityEngine.UI.Button>().onClick.AddListener(() =>
         {
             _dataLevelContainer.SceneToLoad = i;
             SceneManager.GetComponent<SceneManager>().LoadScene(_strSceneToLoad);
         });
         _levelStarter.SetActive(true);
-        _percentFinishText.GetComponent<TextMeshProUGUI>().text = levels[i].DataToSaves.PercentFinish.ToString() + "%";
+        _levelStarter.transform.GetChild(7).GetComponent<Slider>().value = levels[i].DataToSaves.PercentFinish;
+        _levelStarter.transform.GetChild(7).GetChild(2).GetChild(0).GetComponent<TextMeshProUGUI>().text = levels[i].DataToSaves.PercentFinish.ToString() + "%";
         this.gameObject.transform.parent.parent.gameObject.SetActive(false);
     }
 }

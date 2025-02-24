@@ -2009,7 +2009,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1069077437}
   m_HandleRect: {fileID: 1436154940}
@@ -2586,7 +2586,6 @@ MonoBehaviour:
   _levelStarter: {fileID: 630332994}
   SceneManager: {fileID: 1318061272}
   _strSceneToLoad: Beta
-  _percentFinishText: {fileID: 0}
 --- !u!1 &1069077436
 GameObject:
   m_ObjectHideFlags: 0
@@ -5478,7 +5477,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 702, y: 460}
+  m_AnchoredPosition: {x: 702, y: 399}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1688384407
