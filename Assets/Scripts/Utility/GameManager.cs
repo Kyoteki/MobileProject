@@ -73,7 +73,6 @@ public class GameManager : MonoBehaviour
         if(scorePercent >= _scoreTwoStar) stars++;
         if(scorePercent >= _scoreThreeStar) stars++;
         DataToSaves levelData = _levelContainer.GetCurrentLevel().DataToSaves;
-        if(levelData.NbStars < stars) levelData.NbStars = stars;
         if(!levelData.IsCompleted || levelData.BestStep > MovementPlayer.NbCaseMouv) levelData.BestStep = MovementPlayer.NbCaseMouv;
         if(!levelData.IsCompleted || levelData.BestTime > time) levelData.BestTime = time;
         if (!levelData.IsCompleted || levelData.HighScore > SoulsManager.Instance.CountSoulsPurify) levelData.HighScore = SoulsManager.Instance.CountSoulsPurify;

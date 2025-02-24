@@ -3,8 +3,8 @@ using UnityEngine;
 [System.Serializable]
 public class DataToSaves
 {
-    [SerializeField] private int _nbStars = 0;
-    public int NbStars{ get => _nbStars; set => _nbStars = value; }
+    [SerializeField] private int _percentFinish = 0;
+    public int PercentFinish{ get => _percentFinish; set => _percentFinish = value; }
     [SerializeField] private int _bestStep = 0;
     public int BestStep{ get => _bestStep; set => _bestStep = value; }
     [SerializeField] private int _highScore = 0;
