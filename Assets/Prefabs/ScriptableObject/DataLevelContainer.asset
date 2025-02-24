@@ -21,7 +21,7 @@ MonoBehaviour:
       _percentFinish: 70
       _bestStep: 0
       _highScore: 0
-      _isCompleted: 0
+      _isCompleted: 1
       _bestTime: 0
   - _levelName: Grande prairie
     _prefab: {fileID: 5528948840815735545, guid: cc2f4089a1e95214dad9f447967ad963, type: 3}
