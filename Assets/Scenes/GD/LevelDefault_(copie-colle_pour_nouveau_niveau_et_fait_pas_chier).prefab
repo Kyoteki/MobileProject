@@ -320,7 +320,7 @@ GameObject:
   - component: {fileID: 6609035191766275809}
   - component: {fileID: 8229611512477005714}
   m_Layer: 0
-  m_Name: Level 0
+  m_Name: LevelDefault_(copie-colle_pour_nouveau_niveau_et_fait_pas_chier)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

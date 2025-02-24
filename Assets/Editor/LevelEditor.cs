@@ -54,6 +54,10 @@ public class LevelEditor : Editor
         {
             level.ChooseAltar();
         }
+        if (GUILayout.Button("Select AddMorePower"))
+        {
+            level.ChooseAddMorePower();
+        }
         if (GUILayout.Button("Select Soul"))
         {
             level.ChooseSoul();
