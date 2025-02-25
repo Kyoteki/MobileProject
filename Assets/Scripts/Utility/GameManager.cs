@@ -52,12 +52,12 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         _timer += Time.deltaTime;
-        EndGame();
     }
 
     void Setup()
     {
         _player = GameObject.FindGameObjectWithTag("Player");
+        MovementPlayer.OnStepEnd += EndGame;
         StartTimer();
     }
 
@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
     {
         if (!SoulsManager.Instance.AllSoulsMeetEnd) return;
         int score = SoulsManager.Instance.CountSoulsPurify;
+        if (score == 0) return;
         float time = _timer;
         int scorePercent = SoulsManager.Instance.CountSouls / score * 100;
         DataToSaves levelData = _levelContainer.GetCurrentLevel().DataToSaves;
