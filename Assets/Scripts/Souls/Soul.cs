@@ -1,12 +1,13 @@
 using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.InputSystem.LowLevel;
 
 public class Soul : MonoBehaviour
 {
     public enum State
     {
-        stateOne, stateTwo, stateThree, stateFour, stateFive, stateDie
+        stateOne, stateTwo, stateThree, stateDie
     }
 
     [Header("State")]
@@ -15,6 +16,8 @@ public class Soul : MonoBehaviour
     [Header("Visual")]
     [SerializeField] SpriteRenderer _spriteRenderer;
     [SerializeField] Sprite[] _sprites;
+    [SerializeField] SpriteRenderer[] _spriteLifeRenderers;
+    [SerializeField] Sprite[] _spritesLife;
     private MovementPlayer _movementPlayer;
     public event Action OnCorrupt;
     [SerializeField] UnityEvent _onCorrupt;
@@ -24,25 +27,7 @@ public class Soul : MonoBehaviour
         _movementPlayer = GameManager.Instance.MovementPlayer;
 
         _movementPlayer.OnStepEnd += HurtSelf;
-        //A SUPRIMMERR!!!!!!!!!!!!!!!!!!!!!
-        switch (_state)
-        {
-            case State.stateOne:
-                _spriteRenderer.color = Color.green;
-                break;
-            case State.stateTwo:
-                _spriteRenderer.color = Color.yellow;
-                break;
-            case State.stateThree:
-                _spriteRenderer.color = Color.red;
-                break;
-            case State.stateFour:
-                _spriteRenderer.color = Color.gray;
-                break;
-            case State.stateFive:
-                _spriteRenderer.color = Color.black;
-                break;
-        }
+        UpdateSprite();
     }
 
     void HurtSelf()
@@ -58,31 +43,32 @@ public class Soul : MonoBehaviour
         else
         {
             _onHurt?.Invoke();
-            _spriteRenderer.sprite = _sprites[newState];
+            UpdateSprite();
         }
-        //A SUPRIMMERR!!!!!!!!!!!!!!!!!!!!!
-        switch (_state)
+    }
+
+    private void UpdateSprite()
+    {
+        int nbState = (int)_state;
+        _spriteRenderer.sprite = _sprites[nbState];
+        int count = 0;
+        foreach (SpriteRenderer spriteLifeRenderer in _spriteLifeRenderers)
         {
-            case State.stateOne:
-                _spriteRenderer.color = Color.green;
-                break;
-            case State.stateTwo:
-                _spriteRenderer.color = Color.yellow;
-                break;
-            case State.stateThree:
-                _spriteRenderer.color = Color.red;
-                break;
-            case State.stateFour:
-                _spriteRenderer.color = Color.gray;
-                break;
-            case State.stateFive:
-                _spriteRenderer.color = Color.black;
-                break;
+            if (count <= 2 - nbState)
+            {
+                spriteLifeRenderer.gameObject.SetActive(true);
+                spriteLifeRenderer.sprite = _spritesLife[nbState];
+            }
+            else
+            {
+                spriteLifeRenderer.gameObject.SetActive(false);
+            }
+            count++;
         }
     }
 
     private void OnDestroy()
     {
-        _movementPlayer.OnEndMove -= HurtSelf;
+        _movementPlayer.OnStepEnd -= HurtSelf;
     }
 }
