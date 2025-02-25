@@ -19,7 +19,7 @@ public class Purify : MonoBehaviour, IInteractable
     {
         if (_soulPlayer.AsSoul)
         {
-            _soulPlayer.PurifySoul();
+            _soulPlayer.DeleteSoul();
             SoulsManager.Instance.AddSoulsPurify();
             _onPurify?.Invoke();
             OnPurify?.Invoke();
