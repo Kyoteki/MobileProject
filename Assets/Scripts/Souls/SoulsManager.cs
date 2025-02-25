@@ -18,11 +18,6 @@ public class SoulsManager : MonoBehaviour
         Instance = this;
     }
 
-    void Start()
-    {
-        Setup();
-    }
-
     public void Setup()
     {
         CountSouls = 0;
