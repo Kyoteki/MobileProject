@@ -14,17 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levels:
   - _levelName: AdrienNiveauTest
-    _prefab: {fileID: 5528948840815735545, guid: 404bbe82994fad643b1f0fae59f820e3, type: 3}
+    _prefab: {fileID: 5528948840815735545, guid: 57fe2ace2de06a244ad92f8f784e4a48, type: 3}
     _imagePreviewMini: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     _imagePreview: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     _dataToSaves:
       _percentFinish: 0
-      _bestStep: 0
-      _highScore: 0
-      _isCompleted: 0
-      _bestTime: 0
+      _bestStep: 12
+      _highScore: 1
+      _isCompleted: 1
+      _bestTime: 13.475101
   - _levelName: Petite prairie
-    _prefab: {fileID: 5528948840815735545, guid: 6f6c06615d26a9540ae4e0248644e3bc, type: 3}
+    _prefab: {fileID: 5528948840815735545, guid: 93cfca65799a82449beae1f0ea27c2f4, type: 3}
     _imagePreviewMini: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     _imagePreview: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     _dataToSaves:
@@ -34,7 +34,7 @@ MonoBehaviour:
       _isCompleted: 1
       _bestTime: 0
   - _levelName: Grande prairie
-    _prefab: {fileID: 5528948840815735545, guid: cc2f4089a1e95214dad9f447967ad963, type: 3}
+    _prefab: {fileID: 5528948840815735545, guid: 9af81c1be195b174eb0e48fa49b8a802, type: 3}
     _imagePreviewMini: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     _imagePreview: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     _dataToSaves:
@@ -44,7 +44,7 @@ MonoBehaviour:
       _isCompleted: 0
       _bestTime: 0
   - _levelName: Petite prairie
-    _prefab: {fileID: 5528948840815735545, guid: cc2f4089a1e95214dad9f447967ad963, type: 3}
+    _prefab: {fileID: 5528948840815735545, guid: 93cfca65799a82449beae1f0ea27c2f4, type: 3}
     _imagePreviewMini: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     _imagePreview: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
     _dataToSaves:
@@ -53,4 +53,4 @@ MonoBehaviour:
       _highScore: 0
       _isCompleted: 0
       _bestTime: 0
-  _sceneToLoad: 0
+  _sceneToLoad: 1
