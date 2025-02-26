@@ -963,7 +963,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spriteRenderer: {fileID: 2976474308503066063}
-  _speed: 2
+  _speed: 5
   _pathList: []
   _onStartMove:
     m_PersistentCalls:

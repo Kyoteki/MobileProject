@@ -584,7 +584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 727ad95447814804fb8616f7f76e9f41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _levelSelected: {fileID: 5528948840815735545, guid: 7c53d0717b11aad4fa8842af6d2eaca2, type: 3}
+  _levelSelected: {fileID: 0}
   _scoreOneStar: 60
   _scoreTwoStar: 80
   _scoreThreeStar: 100
