@@ -69,7 +69,6 @@ public class MovementPlayer : MonoBehaviour
             _onEndMove?.Invoke();
             OnEndMove?.Invoke();
             OnStop?.Invoke();
-            NbCaseMouvLast--;
             if (NbCaseMouvLast == 0)
             {
                 OnStepEnd?.Invoke();
@@ -79,6 +78,7 @@ public class MovementPlayer : MonoBehaviour
         }
         if (_doCountMove)
         {
+            NbCaseMouvLast--;
             _nbCaseMouv++;
         }
     }
@@ -106,6 +106,7 @@ public class MovementPlayer : MonoBehaviour
     public void TPAt(Vector3 pos)
     {
         transform.position = pos;
+        OnEndMove?.Invoke();
         _onTP?.Invoke();
     }
 
